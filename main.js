@@ -39,8 +39,9 @@ function getVideos() {
 				let player = new YT.Player("player" + i, {
 					height: "360",
 					width: "640",
-					videoId: "eRPF_MR6o4g",
+					videoId: videoInfo.contentDetails.videoId,
 				});
+				players[`player${i}`] = player;
 				i++;
 			});
 		});
