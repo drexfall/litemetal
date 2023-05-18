@@ -16,7 +16,7 @@ body {
   font-family: "Poppins", sans-serif;
   margin: 0;
   background: var(--color-1);
-  overflow-x: hidden;
+  overflow: hidden;
 }
 body main {
   width: -moz-fit-content;
@@ -32,6 +32,8 @@ body .scroll-elem {
   width: 100vw;
   position: relative;
   z-index: 2;
+  opacity: 0;
+  filter: blur(10pt);
 }
 body .scroll-elem section {
   position: absolute;
@@ -165,4 +167,74 @@ section[data-page="4"] {
 }
 section[data-page="4"] div[data-month~=""] {
   position: absolute;
+}
+
+#loadingScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 999;
+  color: var(--color-2);
+  background-color: var(--color-4);
+}
+#loadingScreen .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+#loadingScreen .loading .text {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loadingScreen .loading button {
+  position: relative;
+  width: 8em;
+  bottom: 3em;
+}
+#loadingScreen .loading button lottie-player {
+  display: hidden;
+  position: absolute;
+  z-index: -1;
+  translate: -50% -50%;
+  top: 50%;
+  left: 50%;
+}
+#loadingScreen .loading button span {
+  width: 100%;
+  display: block;
+  padding: 2em;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: var(--color-2) solid 2pt;
+  transition-duration: inherit;
+  opacity: 0;
+  translate: 0 100%;
+}
+#loadingScreen .loading button:hover span {
+  background-color: rgba(255, 255, 255, 0.2666666667);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  color: white;
+  font-weight: bold;
+  padding: 1em;
+  box-sizing: border-box;
+  transition-duration: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16/9;
 }/*# sourceMappingURL=style.css.map */

@@ -1,6 +1,5 @@
-function monthAnimations() {
+function monthAnimations(tl) {
 	duration = 2;
-	const tl = gsap.timeline();
 	let s = document.querySelector(".scroll-list");
 
 	for (let index = 0; index < s.childElementCount; index++) {
@@ -61,7 +60,7 @@ function monthAnimations() {
 				fontSize: "7em",
 				opacity: 0,
 				filter: "blur(40pt)",
-				duration: duration / 2,
+				duration: duration,
 				paddingLeft: "1em",
 				letterSpacing: "3em",
 				fontWeight: 300,
@@ -71,16 +70,15 @@ function monthAnimations() {
 				opacity: 1,
 				top: "50%",
 				filter: "blur(0pt)",
-				duration: duration / 2,
+				duration: duration,
 				letterSpacing: "1em",
 				fontWeight: 500,
 			},
-			"<"
+			2
 		);
 
 		tl.add(timelines[page.dataset.month]);
 	}
-	return tl;
 }
 
 function janAnimation() {
