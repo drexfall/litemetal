@@ -41,6 +41,7 @@ body {
                 translate: 0% 100%;
                 overflow: hidden;
                 position: relative;
+                pointer-events: unset;
             }
             &[data-page="5"] {
                 translate: -50% 100%;
@@ -64,6 +65,7 @@ body {
                 }
             }
             position: absolute;
+            pointer-events: none;
             top: 0;
             left: 0;
             height: 100%;

@@ -36,5 +36,12 @@ body {
             letter-spacing: 1em;
             margin: 0;
         }
+        .content-body {
+            height: 100%;
+            width: 100%;
+            iframe {
+                display: none;
+            }
+        }
     }
 }

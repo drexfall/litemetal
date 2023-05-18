@@ -35,4 +35,11 @@ body {
   text-transform: uppercase;
   letter-spacing: 1em;
   margin: 0;
+}
+.scroll-list .month-page .content-body {
+  height: 100%;
+  width: 100%;
+}
+.scroll-list .month-page .content-body iframe {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

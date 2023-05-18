@@ -40,8 +40,25 @@ function getVideos() {
 					height: "360",
 					width: "640",
 					videoId: videoInfo.contentDetails.videoId,
+					playerVars: {
+						autoplay: 1, // Auto-play the video on load
+						controls: 1, // Show pause/play buttons in player
+					},
+					events: {
+						onReady: function (e) {
+							e.target.setVolume(0);
+							if (
+								Object.entries(players).length == 12 &&
+								!playerUpdated
+							) {
+								mainTimeline();
+								playerUpdated = true;
+							}
+						},
+					},
 				});
 				players[`player${i}`] = player;
+
 				i++;
 			});
 		});
@@ -54,6 +71,7 @@ function loadClient() {
 	);
 }
 let players = {};
+let playerUpdated = false;
 const key = "AIzaSyDj-jWbR9jnqRlLxOIGTfNeZom0FeqwSBY";
 const tl = gsap.timeline({
 	scrollTrigger: {
@@ -67,9 +85,9 @@ const tl = gsap.timeline({
 
 gapi.load("client:auth2");
 window.addEventListener("load", async () => {
+	document.documentElement.scrollTop = 0;
 	let a = await loadClient();
 	getVideos();
-	mainTimeline();
 });
 // tl.to("[data-page='10']", {
 // 	yPercent: -200,

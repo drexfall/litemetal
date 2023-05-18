@@ -7,7 +7,30 @@ function monthAnimations() {
 		const prevPrevPage = s.children[index - 2];
 		const prevPage = s.children[index - 1];
 		const page = s.children[index];
-		tl.to(page, { y: 0 });
+		tl.add(
+			gsap.to(page, {
+				y: 0,
+				onStart: () => {
+					for (let j = 0; j < s.childElementCount; j++) {
+						const element = players[`player${j + 1}`];
+						if (j == index) {
+							element.unMute();
+							element.playVideo();
+							element.seekTo(40);
+						}
+					}
+				},
+				onUpdate: function () {
+					if (index > 0) {
+						players[`player${index}`].setVolume(
+							100 - this.ratio * 100
+						);
+					}
+					players[`player${index + 1}`].setVolume(this.ratio * 100);
+				},
+			})
+		);
+
 		if (prevPrevPage) {
 			tl.to(
 				prevPrevPage.firstElementChild,
@@ -54,6 +77,7 @@ function monthAnimations() {
 			},
 			"<"
 		);
+
 		tl.add(timelines[page.dataset.month]);
 	}
 	return tl;

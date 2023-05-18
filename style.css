@@ -35,6 +35,7 @@ body .scroll-elem {
 }
 body .scroll-elem section {
   position: absolute;
+  pointer-events: none;
   top: 0;
   left: 0;
   height: 100%;
@@ -95,6 +96,7 @@ body .scroll-elem section[data-page="4"] {
   translate: 0% 100%;
   overflow: hidden;
   position: relative;
+  pointer-events: unset;
 }
 body .scroll-elem section[data-page="5"] {
   translate: -50% 100%;
