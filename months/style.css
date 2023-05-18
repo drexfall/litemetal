@@ -1,0 +1,38 @@
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.scroll-list {
+  list-style: none;
+  margin: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  z-index: 4;
+}
+.scroll-list .month-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  translate: 0 100%;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  opacity: 1;
+  text-transform: uppercase;
+}
+.scroll-list .month-page h2 {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  translate: -50% -50%;
+  font-family: "Poppins", sans-serif;
+  font-size: 7em;
+  text-align: center;
+  opacity: 1;
+  text-transform: uppercase;
+  letter-spacing: 1em;
+  margin: 0;
+}/*# sourceMappingURL=style.css.map */

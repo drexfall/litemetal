@@ -1,0 +1,109 @@
+@import "months/style.css";
+:root {
+    --color-1: #124e78ff;
+    --color-2: #f0f0c9ff;
+    --color-3: #f2bb05ff;
+    --color-4: #040107ff;
+    --color-5: #6e0e0aff;
+}
+.hidden {
+    display: none !important;
+}
+body {
+    color: var(--color-1);
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    background: var(--color-1);
+    overflow-x: hidden;
+    main {
+        width: fit-content;
+        h1 {
+            text-align: center;
+            margin: 0;
+            font-size: 5rem;
+        }
+    }
+    .scroll-elem {
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+        z-index: 2;
+        section {
+            @for $x from 1 through 15 {
+                &[data-page="#{$x}"] {
+                    background: var(--color-#{$x});
+                }
+            }
+            &[data-page="3"] {
+                translate: 100% 0%;
+            }
+            &[data-page="4"] {
+                translate: 0% 100%;
+                overflow: hidden;
+                position: relative;
+            }
+            &[data-page="5"] {
+                translate: -50% 100%;
+            }
+            &[data-page="10"] {
+                position: relative;
+                overflow: hidden;
+                translate: 0 100%;
+                img {
+                    position: absolute;
+                    object-fit: cover;
+                    height: 100%;
+                    width: 100%;
+                }
+                @for $i from 1 through 4 {
+                    img:nth-child(#{$i}) {
+                        scale: 4;
+                        opacity: 0;
+                        filter: blur(40pt);
+                    }
+                }
+            }
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            main {
+                display: grid;
+                grid-template-rows: repeat(2, auto);
+                height: 40%;
+                width: 40%;
+                pointer-events: none;
+                div {
+                    position: relative;
+                    .landing-text {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        translate: -50% -50%;
+                    }
+                    .landing-text.post {
+                        z-index: 1;
+                    }
+                    #upperTextPost {
+                        filter: blur(40pt);
+                        opacity: 0;
+                    }
+                    #lowerTextPost {
+                        mix-blend-mode: lighten;
+                    }
+                }
+            }
+        }
+    }
+}
+
+section[data-page="4"] {
+    pointer-events: none;
+    div[data-month~=""] {
+        position: absolute;
+    }
+}

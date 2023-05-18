@@ -1,0 +1,18 @@
+section[data-page="4"] {
+    --bg-opacity: 0;
+    --x: 50%;
+    --y: 50%;
+    --grad-width: 30%;
+}
+section[data-page="4"]::before {
+    opacity: var(--bg-opacity);
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle at var(--x) var(--y), var(--color-1) 0%, black var(--grad-width));
+    filter: blur(100pt);
+    z-index: 1;
+}
