@@ -1,8 +1,5 @@
 gsap.registerPlugin("ScrollTrigger");
 
-// function page4Anim() {
-// 	// document.querySelector("[data-page='4']").style.background = "black";
-// }
 function togglePageHide() {
 	for (let index = 0; index < 3; index++) {
 		let elem = document.querySelector(`section[data-page='${index + 1}'`);
@@ -23,50 +20,55 @@ function mainTimeline(tl) {
 	tl.to("[data-page='4']", { "--bg-opacity": 1, onComplete: addHover }, "<");
 }
 
-function imageSlide(tl) {
-	tl.to("[data-page='10']", {
-		yPercent: -200,
+function finalPage(tl) {
+	tl.to(
+		".month-page *",
+		{
+			opacity: 0,
+		},
+		"<"
+	);
+	tl.to("section[data-page='1']", {
+		opacity: 1,
+		scale: 1,
 	});
-
-	//
-	let a = document.querySelector("section[data-page='10']");
-
-	for (let i = 1; i < 5; i++) {
-		let x = (y = -50);
-		switch (i) {
-			case 2:
-				x = 50;
-				y = -50;
-				break;
-			case 3:
-				x = -50;
-				y = 50;
-				break;
-			case 4:
-				x = 50;
-				y = 50;
-				break;
-
-			default:
-				break;
-		}
-		tl.to("img:nth-child(" + i + ")", {
-			width: a.clientWidth / 2,
-			height: a.clientHeight / 2,
-		});
-		tl.fromTo(
-			"img:nth-child(" + i + ")",
-			{ xPercent: 100 + x, yPercent: 100 + y },
-			{ xPercent: x, yPercent: y }
-		);
-		tl.to("img:nth-child(" + i + ")", {
-			scale: 1,
+	tl.to(
+		".image-container",
+		{
+			opacity: 0,
+			width: "50%",
+			onComplete: function () {
+				document.body.style.cursor = "unset";
+				document.querySelector(
+					"section[data-page='1']"
+				).style.pointerEvents = "unset";
+			},
+		},
+		"<"
+	);
+	tl.to("section[data-page='1'] img", {
+		left: 0,
+		xPercent: 0,
+	});
+	tl.to(
+		".button-container",
+		{
 			opacity: 1,
-			filter: "blur(0px)",
-		});
-	}
+			yPercent: -150,
+			x: 0,
+		},
+		"<"
+	);
+	[2, 3, 10].forEach((e) => {
+		tl.to(
+			`[data-page='${e}']`,
+			{
+				opacity: 0,
+			},
+			"<"
+		);
+	});
 }
-
 function getVideos() {
 	gapi.client.youtube.playlistItems
 		.list({
@@ -108,6 +110,7 @@ function getVideos() {
 								});
 								mainTL.add(monthAnimations(mainTL));
 								mainTL.add(imageSlide(mainTL));
+								mainTL.add(finalPage(mainTL));
 
 								playerUpdated = true;
 								window.scrollTo(0, 0);
@@ -132,11 +135,15 @@ let players = {};
 let playerUpdated = false;
 const key = "AIzaSyDj-jWbR9jnqRlLxOIGTfNeZom0FeqwSBY";
 const mainTL = gsap.timeline({
+	defaults: {
+		duration: 10,
+		ease: "power3.inOut",
+	},
 	scrollTrigger: {
 		trigger: ".scroll-elem",
 		start: "top top",
 		end: "+=4000",
-		scrub: 0.5,
+		scrub: 1,
 		pin: true,
 	},
 });

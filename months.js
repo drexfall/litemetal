@@ -1,34 +1,9 @@
 function monthAnimations(tl) {
-	duration = 2;
 	let s = document.querySelector(".scroll-list");
 
-	for (let index = 0; index < s.childElementCount; index++) {
+	for (let index = 0; index <= s.childElementCount; index++) {
 		const prevPrevPage = s.children[index - 2];
 		const prevPage = s.children[index - 1];
-		const page = s.children[index];
-		tl.add(
-			gsap.to(page, {
-				y: 0,
-				onStart: () => {
-					for (let j = 0; j < s.childElementCount; j++) {
-						const element = players[`player${j + 1}`];
-						if (j == index) {
-							element.unMute();
-							element.playVideo();
-							element.seekTo(40);
-						}
-					}
-				},
-				onUpdate: function () {
-					if (index > 0) {
-						players[`player${index}`].setVolume(
-							100 - this.ratio * 100
-						);
-					}
-					players[`player${index + 1}`].setVolume(this.ratio * 100);
-				},
-			})
-		);
 
 		if (prevPrevPage) {
 			tl.to(
@@ -54,30 +29,58 @@ function monthAnimations(tl) {
 				"<"
 			);
 		}
-		tl.fromTo(
-			page.firstElementChild,
-			{
-				fontSize: "7em",
-				opacity: 0,
-				filter: "blur(40pt)",
-				duration: duration,
-				paddingLeft: "1em",
-				letterSpacing: "3em",
-				fontWeight: 300,
-			},
-			{
-				fontSize: "7em",
-				opacity: 1,
-				top: "50%",
-				filter: "blur(0pt)",
-				duration: duration,
-				letterSpacing: "1em",
-				fontWeight: 500,
-			},
-			2
-		);
+		if (index < s.childElementCount) {
+			const page = s.children[index];
+			tl.add(
+				gsap.to(page, {
+					y: 0,
+					onStart: () => {
+						for (let j = 0; j < s.childElementCount; j++) {
+							const element = players[`player${j + 1}`];
+							if (j == index) {
+								element.unMute();
+								element.playVideo();
+								element.seekTo(40);
+							}
+						}
+					},
+					onUpdate: function () {
+						if (index > 0) {
+							players[`player${index}`].setVolume(
+								100 - this.ratio * 100
+							);
+						}
+						players[`player${index + 1}`].setVolume(
+							this.ratio * 100
+						);
+					},
+					delay: 2,
+				})
+			);
+			tl.fromTo(
+				page.firstElementChild,
+				{
+					fontSize: "7em",
+					opacity: 0,
+					filter: "blur(40pt)",
+					paddingLeft: "1em",
+					letterSpacing: "3em",
+					fontWeight: 300,
+				},
+				{
+					fontSize: "7em",
+					opacity: 1,
+					top: "50%",
+					filter: "blur(0pt)",
+					letterSpacing: "1em",
+					fontWeight: 500,
+				},
 
-		tl.add(timelines[page.dataset.month]);
+				"<"
+			);
+
+			tl.add(timelines[page.dataset.month]);
+		}
 	}
 }
 
