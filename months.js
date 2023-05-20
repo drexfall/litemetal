@@ -4,7 +4,7 @@ function monthAnimations(tl) {
 	for (let index = 0; index <= s.childElementCount; index++) {
 		const prevPrevPage = s.children[index - 2];
 		const prevPage = s.children[index - 1];
-
+		const page = s.children[index];
 		if (prevPrevPage) {
 			tl.to(
 				prevPrevPage.firstElementChild,
@@ -29,8 +29,8 @@ function monthAnimations(tl) {
 				"<"
 			);
 		}
+
 		if (index < s.childElementCount) {
-			const page = s.children[index];
 			tl.add(
 				gsap.to(page, {
 					y: 0,
@@ -78,95 +78,25 @@ function monthAnimations(tl) {
 
 				"<"
 			);
-
-			tl.add(timelines[page.dataset.month]);
+			if (prevPage) {
+				tl.to(
+					prevPage.lastElementChild,
+					{
+						opacity: 0,
+					},
+					"<"
+				);
+			}
+			tl.to(page.querySelector(".message-container"), {
+				opacity: 1,
+			});
+			tl.to(page.querySelector(".message-body"), {
+				opacity: 1,
+				onUpdate: function () {
+					let p = page.querySelector("lottie-player");
+					p.seek(Math.round(this.ratio * p.getLottie().totalFrames));
+				},
+			});
 		}
 	}
 }
-
-function janAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function febAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function marAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function aprAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function mayAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function junAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function julAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function augAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function sepAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function octAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function novAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-function decAnimation() {
-	const timeline = timelines[page.dataset.month];
-
-	return timeline;
-}
-
-let timelines = {
-	jan: gsap.timeline(),
-	feb: gsap.timeline(),
-	mar: gsap.timeline(),
-	apr: gsap.timeline(),
-	may: gsap.timeline(),
-	jun: gsap.timeline(),
-	jul: gsap.timeline(),
-	aug: gsap.timeline(),
-	sep: gsap.timeline(),
-	oct: gsap.timeline(),
-	nov: gsap.timeline(),
-	dec: gsap.timeline(),
-};

@@ -18,6 +18,10 @@ function mainTimeline(tl) {
 	});
 
 	tl.to("[data-page='4']", { "--bg-opacity": 1, onComplete: addHover }, "<");
+	tl.to(".music-player-wrapper", {
+		opacity: 1,
+		filter: "blur(0pt)",
+	});
 }
 
 function finalPage(tl) {

@@ -31,7 +31,7 @@ for (let imageIndex = 0; imageIndex < 100; imageIndex++) {
 		} else {
 			src += ".png";
 		}
-		imageElem.src = src;
+		imageElem.src = src + "?nf_resize=smartcrop&w=200";
 		imageElem.classList.add("image");
 		imageContainer.appendChild(imageElem);
 	});
