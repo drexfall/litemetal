@@ -20,7 +20,11 @@ function mainTimeline(tl) {
 	tl.to("[data-page='4']", { "--bg-opacity": 1, onComplete: addHover }, "<");
 	tl.to(".music-player-wrapper", {
 		opacity: 1,
-		filter: "blur(0pt)",
+		filter: "blur(0pt) grayscale(1) brightness(2.5)",
+		onComplete: function () {
+			console.log(this);
+			this._targets[0].firstElementChild.play();
+		},
 	});
 }
 
@@ -59,7 +63,7 @@ function finalPage(tl) {
 		{
 			opacity: 1,
 			yPercent: -150,
-			x: 0,
+			xPercent: 25,
 		},
 		"<"
 	);
@@ -112,6 +116,15 @@ function getVideos() {
 									duration: 0.3,
 									delay: 2,
 								});
+								gsap.to(
+									".loading .text",
+									{
+										scale: 10,
+										opacity: 0,
+										zIndex: 0,
+									},
+									"<"
+								);
 								mainTL.add(monthAnimations(mainTL));
 								mainTL.add(imageSlide(mainTL));
 								mainTL.add(finalPage(mainTL));
@@ -140,14 +153,14 @@ let playerUpdated = false;
 const key = "AIzaSyDj-jWbR9jnqRlLxOIGTfNeZom0FeqwSBY";
 const mainTL = gsap.timeline({
 	defaults: {
-		duration: 10,
+		duration: 40,
 		ease: "power3.inOut",
 	},
 	scrollTrigger: {
 		trigger: ".scroll-elem",
 		start: "top top",
-		end: "+=4000",
-		scrub: 1,
+		end: "+=10000",
+		scrub: 0.8,
 		pin: true,
 	},
 });
@@ -156,7 +169,7 @@ window.scrollTo(0, 0);
 gapi.load("client:auth2");
 window.addEventListener("load", async () => {
 	window.scrollTo(0, 0);
-	let a = await loadClient();
+	await loadClient();
 	getVideos();
 	window.scrollTo(0, 0);
 });

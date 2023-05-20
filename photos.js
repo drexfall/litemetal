@@ -22,10 +22,10 @@ function imageSlide(tl) {
 const page = document.querySelector("[data-page='10']");
 let imageContainer = page.querySelector(".image-container");
 let a = FileReader;
-for (let imageIndex = 0; imageIndex < 100; imageIndex++) {
+for (let imageIndex = 1; imageIndex <= 100; imageIndex++) {
 	const imageElem = document.createElement("img");
-	let src = `./images/${imageIndex + 1}`;
-	if (92 < imageIndex < 94) {
+	let src = `./images/${imageIndex}`;
+	if ([77, 92, 93, 94].includes(imageIndex)) {
 		src += ".png";
 	} else {
 		src += ".jpg";

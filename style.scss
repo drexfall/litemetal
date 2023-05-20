@@ -53,17 +53,31 @@ body {
                     left: 50%;
                     translate: -50% -50%;
                 }
+                .final-message {
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 25%;
+                    left: 75%;
+                    translate: -100% -50%;
+                    h3 {
+                        opacity: 0.8;
+                    }
+                    h4 {
+                        opacity: 0.6;
+                    }
+                }
                 .button-container {
                     position: absolute;
-                    top: 50%;
+                    top: 75%;
                     right: 25%;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    flex-direction: column;
                     opacity: 0;
-                    translate: 0 100%;
-                    height: 50vh;
+                    translate: 25% 100%;
+                    height: 30vh;
+                    gap: 24pt;
                     button {
                         border: 2pt solid var(--color-2);
                         height: 48pt;
@@ -92,7 +106,7 @@ body {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    filter: blur(10pt);
+                    filter: blur(10pt) grayscale(1);
                     opacity: 0;
                     height: 24pt;
                     gap: 24pt;
@@ -206,6 +220,9 @@ section[data-page="4"] {
             position: relative;
             height: 100%;
             width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             .yt-player {
                 position: absolute;
                 top: 0;
@@ -219,7 +236,7 @@ section[data-page="4"] {
                 translate: 0 10pt;
                 justify-content: space-between;
                 height: 100%;
-                width: 100%;
+                width: 80%;
                 align-items: center;
                 lottie-player {
                     opacity: 1;
@@ -228,7 +245,7 @@ section[data-page="4"] {
                 }
                 .message-body {
                     display: flex;
-                    opacity: 0;
+                    opacity: 1;
                     translate: 0 100%;
                     h6 {
                     }
@@ -259,16 +276,21 @@ section[data-page="4"] {
         align-items: center;
         flex-direction: column;
         height: 100vh;
+        position: relative;
         .text {
+            position: absolute;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            z-index: 2;
         }
         button {
             position: relative;
             width: 8em;
-            bottom: 3em;
             lottie-player {
                 display: hidden;
                 position: absolute;
