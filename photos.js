@@ -25,7 +25,7 @@ let a = FileReader;
 for (let imageIndex = 0; imageIndex < 100; imageIndex++) {
 	const imageElem = document.createElement("img");
 	let src = `./images/${imageIndex + 1}`;
-	if (0 < imageIndex < 94) {
+	if (92 < imageIndex < 94) {
 		src += ".png";
 	} else {
 		src += ".jpg";
