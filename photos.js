@@ -25,14 +25,12 @@ let a = FileReader;
 for (let imageIndex = 0; imageIndex < 100; imageIndex++) {
 	const imageElem = document.createElement("img");
 	let src = `./images/${imageIndex + 1}`;
-	fetch(src + ".png").then((r) => {
-		if (r.status == 404) {
-			src += ".jpg";
-		} else {
-			src += ".png";
-		}
-		imageElem.src = src + "?nf_resize=smartcrop&w=200";
-		imageElem.classList.add("image");
-		imageContainer.appendChild(imageElem);
-	});
+	if (0 < imageIndex < 94) {
+		src += ".png";
+	} else {
+		src += ".jpg";
+	}
+	imageElem.src = src + "?nf_resize=smartcrop&w=200";
+	imageElem.classList.add("image");
+	imageContainer.appendChild(imageElem);
 }
