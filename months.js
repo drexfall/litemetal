@@ -34,21 +34,18 @@ function monthAnimations(tl) {
 		}
 
 		if (index < s.childElementCount) {
-			tl.add(
-				gsap.to(page, {
-					y: 0,
-					onUpdate: function () {
-						if (index > 0) {
-							players[`player${index}`].setVolume(
-								100 - this.ratio * 100
-							);
-						}
-						players[`player${index + 1}`].setVolume(
-							this.ratio * 100
+			tl.to(page, {
+				y: 0,
+				onUpdate: function () {
+					console.log(this.ratio);
+					if (index > 0) {
+						players[`player${index}`].setVolume(
+							100 - this.ratio * 100
 						);
-					},
-				})
-			);
+					}
+					players[`player${index + 1}`].setVolume(this.ratio * 100);
+				},
+			});
 			tl.fromTo(
 				page.firstElementChild,
 				{
@@ -92,10 +89,19 @@ function monthAnimations(tl) {
 					"<"
 				);
 			}
-			tl.to(page.querySelector(".message-container"), {
-				opacity: 1,
-			});
+			tl.to(
+				page.querySelector(".message-container"),
+				{
+					opacity: 1,
+					duration: 10,
+				},
+				"<30"
+			);
 			tl.to(page.querySelector(".message-body"), {
+				opacity: 1,
+				y: 0,
+			});
+			tl.to(page.querySelector("lottie-player"), {
 				opacity: 1,
 				y: 0,
 			});
