@@ -65,7 +65,7 @@ function monthAnimations(tl) {
 					top: "50%",
 					filter: "blur(0pt)",
 					letterSpacing: "1em",
-					fontWeight: 500,
+					fontWeight: 600,
 				},
 
 				"<"
@@ -82,12 +82,22 @@ function monthAnimations(tl) {
 					prevPage.lastElementChild,
 					{
 						opacity: 0,
+						onComplete: function () {
+							prevPage.querySelector("lottie-player").pause();
+						},
+						onStart: function () {
+							prevPage.querySelector("lottie-player").play();
+						},
 					},
 					"<"
 				);
 			}
 			tl.to(page.querySelector(".message-container"), {
 				opacity: 1,
+			});
+			tl.to(page.querySelector(".message-body"), {
+				opacity: 1,
+				y: 0,
 			});
 		}
 	}

@@ -58,15 +58,12 @@ function finalPage(tl) {
 		left: 0,
 		xPercent: 0,
 	});
-	tl.to(
-		".button-container",
-		{
-			opacity: 1,
-			yPercent: -150,
-			xPercent: 25,
-		},
-		"<"
-	);
+	tl.to(".final-message", {
+		opacity: 1,
+	});
+	tl.to(".button-container", {
+		opacity: 1,
+	});
 	[2, 3, 10].forEach((e) => {
 		tl.to(
 			`[data-page='${e}']`,
@@ -122,6 +119,16 @@ function getVideos() {
 										scale: 10,
 										opacity: 0,
 										zIndex: 0,
+										onComplete: function () {
+											document
+												.querySelector("#loadingAnim")
+												.pause();
+										},
+										onStart: function () {
+											document
+												.querySelector("#loadingAnim")
+												.play();
+										},
 									},
 									"<"
 								);

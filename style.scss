@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@200;600;700&display=swap");
 @import "months/style.css";
 :root {
     --color-1: #124e78ff;
@@ -53,38 +54,46 @@ body {
                     left: 50%;
                     translate: -50% -50%;
                 }
-                .final-message {
-                    display: flex;
-                    flex-direction: column;
+                .content {
                     position: absolute;
-                    top: 25%;
-                    left: 75%;
-                    translate: -100% -50%;
-                    h3 {
-                        opacity: 0.8;
+                    top: 50%;
+                    left: 70%;
+                    translate: -50% -50%;
+
+                    .final-message {
+                        display: flex;
+                        flex-direction: column;
+                        opacity: 0;
+                        h2 {
+                            font-family: "Dancing Script";
+                            font-size: 56pt;
+                        }
+                        h3 {
+                            opacity: 0.8;
+                            font-size: 24pt;
+                            font-weight: 400;
+                        }
+                        h4 {
+                            opacity: 0.6;
+                            font-size: 16pt;
+                            font-weight: 300;
+                        }
                     }
-                    h4 {
-                        opacity: 0.6;
-                    }
-                }
-                .button-container {
-                    position: absolute;
-                    top: 75%;
-                    right: 25%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    opacity: 0;
-                    translate: 25% 100%;
-                    height: 30vh;
-                    gap: 24pt;
-                    button {
-                        border: 2pt solid var(--color-2);
-                        height: 48pt;
-                    }
-                    button:hover {
-                        color: var(--color-1);
-                        background-color: var(--color-2);
+                    .button-container {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        opacity: 0;
+                        height: 30vh;
+                        gap: 24pt;
+                        button {
+                            border: 2pt solid var(--color-2);
+                            height: 48pt;
+                        }
+                        button:hover {
+                            color: var(--color-1);
+                            background-color: var(--color-2);
+                        }
                     }
                 }
             }
@@ -216,6 +225,9 @@ section[data-page="4"] {
     pointer-events: none;
     .month-page {
         position: absolute;
+        h2 {
+            font-weight: 600;
+        }
         .content-body {
             position: relative;
             height: 100%;
@@ -241,16 +253,35 @@ section[data-page="4"] {
                 lottie-player {
                     opacity: 1;
                     height: 20vw;
-                    width: 20vw;
+                    min-width: 20vw;
                 }
                 .message-body {
                     display: flex;
-                    opacity: 1;
+                    flex-direction: column;
+                    opacity: 0;
                     translate: 0 100%;
+                    padding: 60pt;
+                    box-sizing: border-box;
+                    text-align: left;
                     h6 {
+                        font-size: 56pt;
+                        margin: 12pt;
+                        font-family: "Dancing Script";
                     }
                     p {
+                        font-size: 16pt;
+                        font-weight: 300;
                     }
+                }
+            }
+        }
+    }
+    .month-page:nth-child(even) {
+        .content-body {
+            .message-container {
+                flex-direction: row-reverse;
+                .message-body {
+                    text-align: right;
                 }
             }
         }
