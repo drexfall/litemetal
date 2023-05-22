@@ -22,7 +22,6 @@ function mainTimeline(tl) {
 		opacity: 1,
 		filter: "blur(0pt) grayscale(1) brightness(2.5)",
 		onComplete: function () {
-			console.log(this);
 			this._targets[0].firstElementChild.play();
 		},
 	});
@@ -99,6 +98,7 @@ function getVideos() {
 							e.target.seekTo(0);
 							e.target.playVideo();
 							e.target.setVolume(0);
+							e.target.mute();
 						},
 						onStateChange: function (e) {
 							if (

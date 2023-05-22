@@ -36,6 +36,46 @@ function monthAnimations(tl) {
 		if (index < s.childElementCount) {
 			tl.to(page, {
 				y: 0,
+				delay: index == 1 ? 20 : 5,
+				onStart: function () {
+					let seek = 40;
+					switch (index + 1) {
+						case 1:
+							seek = 51;
+							break;
+						case 2:
+							seek = 64;
+							break;
+						case 3:
+							seek = 65;
+							break;
+						case 4:
+							seek = 35;
+						case 5:
+							break;
+						case 6:
+							seek = 60;
+							break;
+						case 7:
+							seek = 71;
+							break;
+						case 9:
+							seek = 42;
+							break;
+						case 10:
+							seek = 37;
+							break;
+
+						case 11:
+							seek = 45;
+							break;
+						case 12:
+							seek = 43;
+							break;
+					}
+					players[`player${index + 1}`].seekTo(seek);
+					players[`player${index + 1}`].unMute();
+				},
 				onUpdate: function () {
 					if (index > 0) {
 						players[`player${index}`].setVolume(
@@ -62,10 +102,8 @@ function monthAnimations(tl) {
 					filter: "blur(0pt)",
 					letterSpacing: "1em",
 					fontWeight: 600,
-					delay: index == 1 ? 20 : 5,
 				},
-
-				"<40"
+				"<"
 			);
 			tl.to(
 				".music-player-wrapper span ul",
