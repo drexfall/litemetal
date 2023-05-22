@@ -167,7 +167,7 @@ const mainTL = gsap.timeline({
 		trigger: ".scroll-elem",
 		start: "top top",
 		end: "+=10000",
-		scrub: 0.8,
+		scrub: 2,
 		pin: true,
 	},
 });

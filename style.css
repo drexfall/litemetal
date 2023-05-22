@@ -313,10 +313,18 @@ section[data-page="4"] .month-page .content-body .message-container .message-bod
   font-size: 56pt;
   margin: 12pt;
   font-family: "Dancing Script";
+  opacity: 0;
+  text-transform: initial;
 }
 section[data-page="4"] .month-page .content-body .message-container .message-body p {
-  font-size: 16pt;
+  font-size: 14pt;
   font-weight: 300;
+  text-transform: none;
+  color: var(--color-2);
+  opacity: 0.7;
+  line-height: 2;
+  font-style: italic;
+  opacity: 0;
 }
 section[data-page="4"] .month-page:nth-child(even) .content-body .message-container {
   flex-direction: row-reverse;

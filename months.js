@@ -37,7 +37,6 @@ function monthAnimations(tl) {
 			tl.to(page, {
 				y: 0,
 				onUpdate: function () {
-					console.log(this.ratio);
 					if (index > 0) {
 						players[`player${index}`].setVolume(
 							100 - this.ratio * 100
@@ -63,9 +62,10 @@ function monthAnimations(tl) {
 					filter: "blur(0pt)",
 					letterSpacing: "1em",
 					fontWeight: 600,
+					delay: index == 1 ? 20 : 5,
 				},
 
-				"<"
+				"<40"
 			);
 			tl.to(
 				".music-player-wrapper span ul",
@@ -89,22 +89,38 @@ function monthAnimations(tl) {
 					"<"
 				);
 			}
-			tl.to(
-				page.querySelector(".message-container"),
-				{
-					opacity: 1,
-					duration: 10,
-				},
-				"<30"
-			);
+			tl.to(page.querySelector(".message-container"), {
+				opacity: 1,
+				duration: 10,
+			});
 			tl.to(page.querySelector(".message-body"), {
 				opacity: 1,
 				y: 0,
 			});
-			tl.to(page.querySelector("lottie-player"), {
-				opacity: 1,
-				y: 0,
-			});
+			tl.to(
+				page.querySelector("lottie-player"),
+				{
+					opacity: 1,
+					y: 0,
+				},
+				"<"
+			);
+			tl.to(
+				page.querySelector(".message-body h6"),
+				{
+					opacity: 1,
+					y: 0,
+				},
+				"<"
+			);
+			tl.to(
+				page.querySelector(".message-body p"),
+				{
+					opacity: 1,
+					y: 0,
+				},
+				"<"
+			);
 		}
 	}
 }
